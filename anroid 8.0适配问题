@@ -1,0 +1,11 @@
+1.项目中遇到的 8.0问题
+解释说明
+现在，AbstractCollection.removeAll() 和 AbstractCollection.retainAll() 始终引发 NullPointerException；之前，当集合为空时不会引发 NullPointerException。此项变更使行为符合文档要求。
+查看应用中可能的潜在问题及解决方案
+
+查看项目中是否使用了AbstractCollection.removeAll() 和 AbstractCollection.retainAll()了，需要做容错，判空处理。
+
+
+具体参考说明网址
+
+ https://www.2cto.com/kf/201711/695387.html
