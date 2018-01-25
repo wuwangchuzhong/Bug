@@ -1,0 +1,25 @@
+1.大部分网上都说的是如何去隐藏华为底部虚拟键，还有一些说是ui设计的问题，当然不同的需求情况下解决方法，都能满足产品需求
+2.最根本的解决方法 A.计算华为底部虚拟键高度 B.调整布局，布局实现移动一定的距离来完美适配华为手机
+3.逻辑代码下面展示
+
+A.
+ /**
+     * add by mcoy for bugID=427
+     * @return 底部状态栏的高度
+     */
+    public static int getNavigationBarHeight(Activity activity) {
+        if(!hasSoftKeys((WindowManager) activity.getSystemService(Context.WINDOW_SERVICE))){
+            return 0;
+        }
+        Resources resources = activity.getResources();
+        int resourceId = resources.getIdentifier("navigation_bar_height","dimen", "android");
+        int height = resources.getDimensionPixelSize(resourceId);
+        Log.e("mcoy", "the height is " + height);
+        return height;
+    }
+ B.布局实现调整完美适配华为底部虚拟键
+ 
+ LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) live_horizontal.getLayoutParams();
+            lp.setMargins(0, 0, StatusBarUtil.getNavigationBarHeight(getActivity()), 0);
+ 在此方法，可以根据不同屏幕界面，上下左右，进行布局适配
+ 
